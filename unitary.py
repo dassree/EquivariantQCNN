@@ -4,7 +4,7 @@ import math
 import cmath
 from pennylane import numpy as np
 from scipy.linalg import expm, sinm, cosm
-
+import testPennylane
 
 
 # Unitary Ansatze for Convolutional Layer
@@ -39,9 +39,9 @@ def U_4(params, wires):  # 5 params
     herm1 = (math.pi/2)*np.array(herm1)
     qml.RX(params[0], wires=wires[0])
     qml.RX(params[1], wires=wires[2])
-    qml.QubitUnitary(cosm(herm1) + 1j*sinm(herm1), wires=[wires[0], wires[1], wires[2]])
-    qml.RX(params[2], wires=wires[0])
-    qml.RX(params[3], wires=wires[2])
+    qml.RXIX(params[2], wires=[wires[0], wires[1], wires[2]])
+    qml.RX(params[3], wires=wires[0])
+    qml.RX(params[4], wires=wires[2])
     qml.QubitUnitary(cosm(herm1) + 1j*sinm(herm1), wires=[wires[0], wires[1], wires[2]])
     #qml.RY(params[4], wires=wires[0])
     #qml.RY(params[5], wires=wires[2])

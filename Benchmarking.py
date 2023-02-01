@@ -1,7 +1,6 @@
 import data
 import Training
 import QCNN_circuit
-import Hierarchical_circuit
 import numpy as np
 
 def accuracy_test(predictions, labels, cost_fn, binary = True):

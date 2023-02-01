@@ -5,24 +5,21 @@ import embedding
 # Quantum Circuits for Convolutional layers
 def conv_layer1(U, params):
     #U(params, wires=[0, 8])
-    #for i in range(0, 6, 3):
-        #U(params, wires=[i, i + 1, i + 2])
-    #for i in range(1, 7, 3):
-        #U(params, wires=[i, i + 1, i + 2])
-    #for i in range(2, 6, 3):
-        #U(params, wires=[i, i + 1, i + 2])
-    for i in range(0, 7, 2):
-        U(params, wires=[i, i + 1])
-    for i in range(1, 7, 2):
-        U(params, wires=[i, i + 1])
+    for i in range(0, 6, 3):
+        U(params, wires=[i, i + 1, i + 2])
+    for i in range(1, 7, 3):
+        U(params, wires=[i, i + 1, i + 2])
+    for i in range(2, 6, 3):
+        U(params, wires=[i, i + 1, i + 2])
+    #for i in range(0, 7, 2):
+        #U(params, wires=[i, i + 1])
+    #for i in range(1, 7, 2):
+        #U(params, wires=[i, i + 1])
 def conv_layer2(U, params):
     #U(params, wires=[0, 8])
     U(params, wires=[0, 2])
     U(params, wires=[4, 6])
     U(params, wires=[2, 4])
-    #U(params, wires=[6, 8])
-    #U(params, wires=[0, 2, 4])
-    #U(params, wires=[2, 4, 6])
 #def conv_layer3(U, params):
     #U(params, wires=[0,8])
     #U(params, wires=[0,4])
@@ -95,7 +92,7 @@ def QCNN(X, params, U, U_params, embedding_type='Amplitude', cost_fn='mse'):
 
     # Data Embedding
     embedding.data_embedding(X, embedding_type=embedding_type)
-    QCNN_structure([unitary.U_5, unitary.U_5], params, U_params)
+    QCNN_structure([unitary.U_5, unitary.U_4], params, U_params)
 
     # Quantum Convolutional Neural Network
     #if U == 'U_1':

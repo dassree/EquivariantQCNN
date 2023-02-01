@@ -1,6 +1,5 @@
 # Implementation of Quantum circuit training procedure
 import QCNN_circuit
-import Hierarchical_circuit
 import pennylane as qml
 from pennylane import numpy as np
 import autograd.numpy as anp
@@ -23,9 +22,6 @@ def cross_entropy(labels, predictions):
 def cost(params, X, Y, U, U_params, embedding_type, circuit, cost_fn):
     if circuit == 'QCNN':
         predictions = np.array([QCNN_circuit.QCNN(x, params, U, U_params, embedding_type, cost_fn=cost_fn) for x in X])
-        
-    elif circuit == 'Hierarchical':
-        predictions = [Hierarchical_circuit.Hierarchical_classifier(x, params, U, U_params, embedding_type, cost_fn=cost_fn) for x in X]
 
     if cost_fn == 'mse':
         loss = square_loss(Y, predictions)
