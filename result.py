@@ -17,10 +17,7 @@ Note: when using 'mse' as cost_fn binary="True" is recommended, when using 'cros
 
 #Unitaries = ['U_SU4', 'U_SU4_1D', 'U_SU4_no_pooling', 'U_9_1D', "U_orth", "U_SO4"]
 Unitaries = ["U_5", "U_5"]
-#Unitaries = ["U_SO4"]
-#U_num_params = [15, 15, 15, 2, 1, 2]
 U_num_params = [2, 2]
-#U_num_params = [6]
 Encodings = ['resize256']
 #dataset = 'fashion_mnist'
 dataset = 'cifar10'
@@ -29,5 +26,5 @@ binary = True
 cost_fn = 'mse'
 
 Benchmarking.Benchmarking(dataset, classes, Unitaries, U_num_params, Encodings, circuit='QCNN', cost_fn=cost_fn, binary=binary)
-#Benchmarking.Benchmarking(dataset, classes, Unitaries, U_num_params, Encodings, circuit='Hierarchical', cost_fn=cost_fn, binary=binary)
+
 
