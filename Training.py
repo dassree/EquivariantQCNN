@@ -23,14 +23,7 @@ def cross_entropy(labels, predictions):
 def cost(params, X, Y, U, U_params, embedding_type, circuit, cost_fn):
     if circuit == 'QCNN':
         predictions = np.array([QCNN_circuit.QCNN(x, params, U, U_params, embedding_type, cost_fn=cost_fn) for x in X])
-        #outcome = np.array(outcome)
-        #predictions = np.zeros(len(outcome))
-        #for i in range(len(outcome)):
-            #if cost_fn == "mse":
-                #if abs(outcome[i, 0]) > abs(outcome[i, 1]):
-                    #predictions[i] = 0
-                #else:
-                    #predictions[i] = 1
+        
     elif circuit == 'Hierarchical':
         predictions = [Hierarchical_circuit.Hierarchical_classifier(x, params, U, U_params, embedding_type, cost_fn=cost_fn) for x in X]
 
@@ -47,11 +40,9 @@ batch_size = 20
 def circuit_training(X_train, Y_train, U, U_params, embedding_type, circuit, cost_fn):
     if circuit == 'QCNN':
         if U == 'U_SU4_no_pooling' or U == 'U_SU4_1D' or U == 'U_9_1D':
-            #total_params = U_params * 3
             total_params = U_params * 2
         else:
             total_params = U_params[0] + U_params[1]
-            #total_params = U_params * 3 + 3 * 2
     elif circuit == 'Hierarchical':
         total_params = U_params * 7
 
