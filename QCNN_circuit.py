@@ -92,7 +92,7 @@ def QCNN(X, params, U, U_params, embedding_type='Amplitude', cost_fn='mse'):
 
     # Data Embedding
     embedding.data_embedding(X, embedding_type=embedding_type)
-    QCNN_structure([unitary.U_5, unitary.U_4], params, U_params)
+    QCNN_structure([unitary.U_4, unitary.U_5], params, U_params)
 
     # Quantum Convolutional Neural Network
     #if U == 'U_1':
