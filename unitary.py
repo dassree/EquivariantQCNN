@@ -7,18 +7,6 @@ from scipy.linalg import expm, sinm, cosm
 
 
 
-
-def kernel(theta):
-    X = np.array([[0, 1], [1, 0]])
-    ID = np.array([[1, 0], [0, 1]])
-    herm = np.kron(np.kron(X, ID), X)
-    herm = theta*herm
-    herm = np.array(herm)
-    mat = cosm(herm) + 1j*sinm(herm)
-
-    return complex(mat)
-
-
 # Unitary Ansatze for Convolutional Layer
 def U_1(params, wires):  # 2 params
     qml.RX(params[0], wires=wires[0])
