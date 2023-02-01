@@ -43,8 +43,7 @@ def circuit_training(X_train, Y_train, U, U_params, embedding_type, circuit, cos
             total_params = U_params * 2
         else:
             total_params = U_params[0] + U_params[1]
-    elif circuit == 'Hierarchical':
-        total_params = U_params * 7
+
 
     params = np.random.randn(total_params, requires_grad=True)
     opt = qml.NesterovMomentumOptimizer(stepsize=learning_rate)
