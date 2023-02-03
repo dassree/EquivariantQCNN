@@ -111,7 +111,7 @@ def QCNN(X, params, U, U_params, embedding_type='Amplitude', cost_fn='mse'):
 
     if cost_fn == 'mse':
         #result = [qml.expval(qml.PauliZ(j)) for j in [0, 4]]
-        result = [qml.expval(qml.PauliZ(j)) for j in [0, 4]]
+        result = [qml.expval(qml.PauliY(j)) for j in [0, 4]]
         #if qml.expval > result[1]:
             #prediction = 0
         #else:
