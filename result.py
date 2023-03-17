@@ -1,6 +1,10 @@
 # This generates the results of the bechmarking code
 
+import os
 import Benchmarking
+from multiprocessing import Pool
+
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 
 """
@@ -16,15 +20,18 @@ Note: when using 'mse' as cost_fn binary="True" is recommended, when using 'cros
 """
 
 #Unitaries = ['U_SU4', 'U_SU4_1D', 'U_SU4_no_pooling', 'U_9_1D', "U_orth", "U_SO4"]
-Unitaries = ["U_4", "U_5"]
-U_num_params = [4, 2]
-Encodings = ['resize256']
-dataset = 'fashion_mnist'
+Unitaries = ["U_4", "U_4"]
+U_num_params = [4, 4]
+Encodings = 'resize256'
+dataset = 'bloodmnist'
 #dataset = 'cifar10'
-classes = [0,1]
+classes = [1,4]
 binary = True
 cost_fn = 'mse'
 
-Benchmarking.Benchmarking(dataset, classes, Unitaries, U_num_params, Encodings, circuit='QCNN', cost_fn=cost_fn, binary=binary)
+def myProcess(processNumber):
+	Benchmarking.Benchmarking(dataset, classes, Unitaries, U_num_params, Encodings, circuit='QCNN', cost_fn=cost_fn, processNumber=processNumber, binary=binary)
 
+with Pool(1) as p:
+	p.map(myProcess, range(1))
 
